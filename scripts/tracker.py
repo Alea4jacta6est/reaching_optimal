@@ -15,9 +15,13 @@ def timeit(f):
     def wrapper(*args, **kwargs):
         start = perf_counter()
         result = f(*args, **kwargs)
+
         end = perf_counter()
         run_time = end-start
         logger.info(f'Time spent: {run_time:.8f} seconds')
-        logger.info(f"Nth result: {result[-1]}")
+        try:
+            logger.info(f"Nth result: {result[-1]}")
+        except TypeError:
+            pass
         return result
     return wrapper

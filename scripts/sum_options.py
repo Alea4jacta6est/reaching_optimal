@@ -3,10 +3,10 @@ from scripts.tracker import timeit
 
 
 @timeit
-def sum_next_nums(input):
-    result = []
-    for i, num in enumerate(input):
-        try:
-            result.append(num+input[i+1])
-        except IndexError:
-            return result
+def sum_next_nums(input, save_out=True):
+    result = [num+input[i+1] for i, num in enumerate(input) if i < len(input)-1]
+    if save_out:
+        with open("sum_up.txt", "a") as file:
+            out_data = ', '.join([str(num) for num in result])
+            file.write(out_data)
+    return result

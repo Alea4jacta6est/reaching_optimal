@@ -12,14 +12,11 @@ dictConfig(
                 "format": FORMAT,
             }
         },
-        "handlers": {
-            "wsgi": {
-                "class": "logging.StreamHandler",
-                "stream": sys.stdout,
-                "formatter": "default",
-            }
-        },
-        "root": {"level": "INFO", "handlers": ["wsgi"]},
+        "root": {"level": "INFO"},
     }
 )
 logger = logging.getLogger()
+
+ff = logging.FileHandler('out.log')
+ff.setLevel(logging.INFO)
+logger.addHandler(ff)
